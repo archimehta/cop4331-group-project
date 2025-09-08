@@ -13,6 +13,21 @@
 	} 
 	else
 	{
+		//check if username already exists 
+		$check = $conn->prepare("SELECT ID FROM Users WHERE Login = ? LIMIT 1");
+		$check->bind_param("s", $UserName);
+		$check->execute();
+		$result = $check->get_result();
+		if ($result->num_rows > 0) 
+		{
+			http_response_code(409);
+			sendResultInfoAsJson(json_encode(["error" => "Username already in use."]));
+			$check->close()
+			$conn->close();
+			exit;
+		}
+		$check->close();
+
 		$HashedPassword = password_hash($PlainTextPassword, PASSWORD_DEFAULT);
 
 		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
@@ -40,4 +55,5 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
+
 ?>

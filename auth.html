@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Manager – Auth</title>
+</head>
+<body>
+  <h1>Contact Manager</h1>
+
+  <!-- ===== Create an account ===== -->
+  <h2>Create an account</h2>
+  <p>Create a username</p>
+  <form id="signup-box" novalidate>
+    <div>
+      <label for="su-username" class="sr-only">Username</label><br>
+      <input id="su-username" type="text" name="username" placeholder="username123">
+    </div>
+    <br>
+    <button type="submit">Sign up with username</button>
+  </form>
+
+  <!-- Or divider -->
+  <p>— Or —</p>
+
+  <!-- ===== Sign In ===== -->
+  <form id="login-form" novalidate>
+    <div>
+      <label for="li-username" class="sr-only">Enter username</label><br>
+      <input id="li-username" type="text" name="username" placeholder="username123" autocomplete="username">
+    </div>
+    <br>
+
+    <div>
+      <label for="li-password" class="sr-only">Enter password</label><br>
+      <input id="li-password" type="password" name="password" placeholder="Enter password" autocomplete="current-password">
+    </div>
+    <br>
+
+    <button type="submit">Sign in</button>
+  </form>
+
+  <p id="login-status"></p>
+
+  <script>
+    // redirect to sign-up page when sign up box is clicked
+    document.getElementById("signup-box").addEventListener("submit", (e) => 
+    {
+      e.preventDefault();
+      window.location.href = "signup.html";
+    });
+
+    // Handle Sign In
+    document.getElementById("login-form").addEventListener("submit", async (e) => 
+    {
+      e.preventDefault();
+      const statusEl = document.getElementById("login-status");
+      statusEl.textContent = "";
+
+      const username = document.getElementById("li-username").value.trim();
+      const password = document.getElementById("li-password").value;
+
+      if (!username) { statusEl.textContent = "Please enter your username."; return; }
+      if (!password) { statusEl.textContent = "Please enter your password."; return; }
+
+      try {
+        const res = await fetch("HashedLogin.php", 
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.error) {
+          statusEl.textContent = data.error || "Login failed.";
+          return;
+        }
+        window.location.href = "dash.html";
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Unexpected error during login.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -12,9 +12,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select * from Contacts where (FirstName like ? or LastName like ? or Phone like ? or Email like ?)and UserID=?");
-		$colorName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("sssss", $colorName, $colorName, $colorName, $colorName, $inData["userId"]);
+		$stmt = $conn->prepare("select * from Contacts where (FirstName like ? or LastName like ?)and UserID=?");
+		$colorName =  $inData["search"][0] . substr($inData["search"], 1, 0) . "%";
+		$stmt->bind_param("sss", $colorName, $colorName, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -27,7 +27,7 @@
 			}
 			$searchCount++;
 			//$searchResults .= '"' . $row["FirstName"] . '"';
-			$searchResults .= '{"FirstName" : "' . $row["FirstName"] .'", "LastName" : "' . $row["LastName"] .'", "Phone" : "' . $row["Phone"] .'", "Email" : "' . $row["Email"] .'", "databaseId" : "' . $row["ID"] .'"}';
+			$searchResults .= '{"FirstName" : "' . $row["FirstName"] .'", "LastName" : "' . $row["LastName"] .'", "Phone" : "' . $row["Phone"] .'", "Email" : "' . $row["Email"] .'", "ProfilePic" : "' . $row["ProfilePic"] .'", "databaseId" : "' . $row["ID"] .'"}';
 		}
 		
 		if( $searchCount == 0 )

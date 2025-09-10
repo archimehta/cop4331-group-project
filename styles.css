@@ -1,0 +1,103 @@
+
+html{
+    background-image: radial-gradient(circle at center, var(--bg-color), var(--accent-color-dark));
+    
+}
+
+body{
+    font-size: 16px;
+    color:var(--text-color);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left:3%;
+    margin-right:3%;
+    font-family: Tahoma;
+    
+}
+button{
+    margin: 5px 0px;
+    padding: 8px 12px;
+    background-color:  var(--accent-color-darkest);
+    color: var(--text-color);
+    border-radius:15px;
+    border:none;
+    cursor:pointer;
+}
+
+/*sticky banner*/
+.navbar ul{
+    z-index: 1000; 
+    list-style-type: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    margin-top: 0;
+    padding: 0.5rem 2rem;
+    background-color: var(--accent-color-darkest);
+    display: flex;
+    align-items: center;
+    
+}
+.navbar ul li {
+    margin:0;
+    padding: 0.25rem;
+}
+
+.navbar ul li:last-child {
+    margin-left:auto;
+    margin-right: 4rem;
+    
+}
+#logout-link,
+#logout-link:visited,
+#logout-link:hover,
+#logout-link:active {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/*dashboard*/
+.dash{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width:20%;
+    padding: 0px 20px;
+
+}
+
+.profile > div{
+    width:180px;
+}
+
+.profile button{
+    width: 100%;
+    text-align: center;
+}
+
+.searchcontact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:80%;
+    
+}
+
+/*colors*/
+:root{
+    /*main colors*/
+    --bg-color: #F5007A; 
+    --text-color: #ffffff;
+
+    /*accent colors*/
+    --accent-color-dark: #9D0049;
+    --accent-color-darkest: #000000;
+}

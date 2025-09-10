@@ -11,6 +11,8 @@
       border-radius: 50%;
       background:#cdd6ea;
       overflow:hidden;
+      margin-top: 10px;
+      margin-bottom:10px;
     }
     .avatar-frame img {
       display:none;
@@ -20,18 +22,23 @@
       border-radius:50%;
     }
   </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- top-right logout -->
-  <div>
-    <a href="#" id="logout-link">Log out</a>
+  <div class="navbar">
+    <ul>
+      <li>img</li>
+      <li>LoverLAMP</li>
+      <li><a href="#" id="logout-link">Log out</a></li>
+    </ul>
   </div>
 
   <!-- Welcome -->
   <h1>Welcome <span id="user-name"></span></h1>
 
-  <div>
-    <div>
+  <div class="dash">
+    <div class="profile">
       <div class="avatar-frame">
         <img id="avatar-img" alt="Profile picture" />
       </div>
@@ -47,7 +54,7 @@
     </div>
 
     <!-- search + contacts -->
-    <div>
+    <div class="searchcontact">
       <input id="search" type="text" placeholder="Search for..." />
       <div id="status"></div>
       <div id="results"></div>
@@ -56,7 +63,7 @@
   </div>
 
  <script>
-/* TEST DATA
+/* TEST DATA*/
 const realFetch = window.fetch;
 window.fetch = async (url, opts) => {
   if (typeof url === 'string' && url.includes('SearchContacts.php')) {
@@ -82,7 +89,7 @@ window.fetch = async (url, opts) => {
     return new Response(JSON.stringify(sample), { status: 200, headers: { 'Content-Type': 'application/json' } });
   }
   return realFetch(url, opts);
-}; */
+}; 
 </script>
 
 

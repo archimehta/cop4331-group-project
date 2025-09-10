@@ -26,65 +26,9 @@
 
     /* new styling */
 
-    /* big box around all contacts */
-    #results {
-      border: 2px solid #000000;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 20px;
-      display: block;
-      background: #ffffff;
+    
 
-      height: 500px;   /* keeps the box visible */
-      width: 700px;
-      overflow-y: auto; 
-    }
-
-    /* Each contact card */
-    .contact-card {
-      width: 680px;   
-      margin: 8px auto; 
-      border: 1px solid #000000;
-      border-radius: 6px;
-      padding: 5px 10px;
-      background: #F5007A;
-      box-shadow: 0 2px 4px rgba(18, 15, 15, 0.1);
-      text-align: center;
-
-      display: flex; 
-      justify-content: space-between;
-      align-items: center; 
-
-      height: 50px;
-    }
-    .contact-card strong {
-      display: block;
-      margin-bottom: 0;
-      font-size: 1.15em;
-    }
-    .contact-card button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      background: #000000;
-      color: white;
-      cursor: pointer;
-      white-space: nowrap;       
-    }
-    .contact-card button:hover {
-      background: #3c3d40;
-    }
-
-    /* made search box bigger */
-    #search {
-      width: 80%;
-      max-width: 700px;
-      padding: 12px;
-      font-size: 1.1em;
-      border: 2px solid #000000;
-      border-radius: 6px;
-      margin-bottom: 16px;
-    }
+   
   </style>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -92,7 +36,7 @@
   <!-- top-right logout -->
   <div class="navbar">
     <ul>
-      <li>img</li>
+      <li><img id="navbar-img" src="./Assets/nick.webp" alt="nick"></li>
       <li>LoverLAMP</li>
       <li><a href="#" id="logout-link">Log out</a></li>
     </ul>

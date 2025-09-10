@@ -1,14 +1,33 @@
 
 html{
     background-image: radial-gradient(circle at center, var(--bg-color), var(--accent-color-dark));
-    
+    height:100%
 }
 
+
 body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-size: 16px;
     color:var(--text-color);
     padding-top: 40px;
     padding-bottom: 40px;
+    margin-left:3%;
+    margin-right:3%;
+    font-family: Tahoma;
+
+    
+    
+}
+body.authpage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 16px;
+    color:var(--text-color);
+    padding:10px;
+    margin:0;
     margin-left:3%;
     margin-right:3%;
     font-family: Tahoma;
@@ -23,6 +42,26 @@ button{
     border:none;
     cursor:pointer;
 }
+h2{
+    margin: 5px;
+}
+p{
+    margin: 5px 0;
+}
+input{
+    border-color: black;
+    border-radius: 7px;
+    padding: 3px 5px;
+    
+    
+}
+label{
+    display: block;
+    text-align: center;
+    margin: 10px 0px;
+   
+}
+
 
 /*sticky banner*/
 .navbar ul{
@@ -40,11 +79,18 @@ button{
     align-items: center;
     
 }
+
+
 .navbar ul li {
     margin:0;
     padding: 0.25rem;
 }
 
+#navbar-img{
+    width: 50px;
+    height:auto; 
+    
+}
 .navbar ul li:last-child {
     margin-left:auto;
     margin-right: 4rem;
@@ -56,6 +102,82 @@ button{
 #logout-link:active {
   text-decoration: none;
   color: var(--text-color);
+}
+/*signup page*/
+
+.signup-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex:1;
+    width:100%;
+   
+}
+#signup-form{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    max-width:90%;
+    background-color:var(--accent-color-dark);
+    border-radius: 5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: white;
+    padding: 0px 100px;
+    padding-top:20px;
+    padding-bottom: 30px;
+    
+}
+/*authorization page*/
+
+.authtitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.authwrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex:1;
+    width:100%;
+}
+.auth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: var(--accent-color-dark);
+    width: 400px;
+    max-width:90%;
+    
+    border-width: 10px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+    
+}
+#signup-box{
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#banner-img{
+    width: 50%;
+    height:auto;
+    display: block;
+    justify-self:center;
+    border:10px solid white;
+    border-radius: 5px;
+    background-color: #000000;
+    padding: 0 80px;
+    
 }
 
 /*dashboard*/
@@ -70,7 +192,8 @@ button{
     flex-direction: column;
     align-items: left;
     width:20%;
-    padding: 0px 20px;
+    margin-left:20px;
+    margin-right:70px;
 
 }
 
@@ -88,9 +211,69 @@ button{
     flex-direction: column;
     align-items: center;
     width:80%;
+    min-width: 200px;
+    margin: 0 60px;
     
 }
+ /* made search box bigger */
+#search {
+    width: 100%;
+    padding: 12px 5px;
+    font-size: 1.1em;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+/* big box around all contacts */
+#results {
+    border: 2px solid #000000;
+    border-radius: 8px;
+    padding: 12px;
+    padding-right: 32px;
+    margin-top: 20px;
+    display: block;
+    background: #ffffff;
+    height: 65vh;   /* keeps the box visible */
+    width: 100%;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
 
+/* Each contact card */
+.contact-card {
+    width: 100%;   
+    margin: 8px auto; 
+    border: 1px solid #000000;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background: #F5007A;
+    box-shadow: 0 2px 4px rgba(18, 15, 15, 0.1);
+    text-align: center;
+
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+
+    height: 50px;
+}
+.contact-card strong {
+    display: block;
+    margin-bottom: 0;
+    font-size: 1.15em;
+}
+.contact-card button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #000000;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;       
+}
+.contact-card button:hover {
+    background: #3c3d40;
+}
 /*colors*/
 :root{
     /*main colors*/

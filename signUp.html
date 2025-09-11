@@ -33,69 +33,7 @@
 
     <button type="button" onclick="window.location.href='auth.html'">Back to Login</button>
   </div>
-  <script>
-    const form = document.getElementById("signup-form");
-    const status = document.getElementById("signup-status");
-    const btn = document.getElementById("signup-btn");
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault(); 
-      status.textContent = "";
-
-      const username = document.getElementById("signup-username").value.trim();
-      const first = document.getElementById("signup-firstname").value.trim();
-      const last = document.getElementById("signup-lastname").value.trim();
-      const pass = document.getElementById("signup-password").value;
-      const confirm = document.getElementById("signup-confirm").value;
-
-      if (!username) { status.textContent = "Please enter a username."; return; }
-      if (!first) { status.textContent = "Please enter your first name."; return; }
-      if (!last) { status.textContent = "Please enter your last name."; return; }
-      if (!pass || !confirm) { status.textContent = "Please enter and confirm your password."; return; }
-      if (pass !== confirm) { status.textContent = "Passwords do not match."; return; }
-
-      btn.disabled = true;
-
-      try {
-        const res = await fetch("RegisterUser.php",{
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include", 
-          body: JSON.stringify({
-          userName: username,
-          firstName: first,
-          lastName: last,
-           password: pass
-          })
-        });
-
-        
-        let data = null;
-        try { data = await res.json(); } catch (_) { data = {}; }
-
-        if (!res.ok) 
-        {
-          // 409 error username already exists
-          status.textContent = data.error || (res.status === 409
-            ? "Username already in use."
-            : "Sign up failed.");
-          return;
-        }
-
-        // Success
-        status.textContent = "Account created successfully.";
-        window.location.href = "auth.html";
-      } 
-      catch (err) 
-      {
-        console.error(err);
-        status.textContent = "Unexpected error. Please try again.";
-      } 
-      finally 
-      {
-        btn.disabled = false;
-      }
-    });
-  </script>
+<!-- External JS link -->
+<script src="js/signup.js"></script>
 </body>
 </html>

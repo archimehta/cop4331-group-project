@@ -4,29 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>View Contact</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- top right -->
-  <p><a href="auth.html">Log out</a></p>
+   <div class="navbar">
+    <ul>
+      <li><img id="navbar-img" src="./Assets/nick.webp" alt="nick"></li>
+      <li>LoverLAMP</li>
+      <li><a id="logout-link" href="auth.html">Log out</a></li>
+    </ul>
+  </div>
 
-  <h1>View Contact</h1>
+  <div class="view">
+    <h1>View Contact</h1>
 
-  <form>
-    <label for="email">Email:</label><br>
-    <input id="email" type="email" readonly><br><br>
+    <form id="view-form">
+      <label for="email">Email:</label>
+      <input id="email" type="email" readonly><br>
 
-    <label for="phone">Phone Number:</label><br>
-    <input id="phone" type="text" readonly><br><br>
+      <label for="phone">Phone Number:</label>
+      <input id="phone" type="text" readonly><br>
 
-    <label for="first_name">First Name:</label><br>
-    <input id="first_name" type="text" readonly><br><br>
+      <label for="first_name">First Name:</label>
+      <input id="first_name" type="text" readonly><br>
 
-    <label for="last_name">Last Name:</label><br>
-    <input id="last_name" type="text" readonly><br><br>
+      <label for="last_name">Last Name:</label>
+      <input id="last_name" type="text" readonly><br><br>
 
-    <button type="button" onclick="window.location.href='dash.html'">
-      Back to Dashboard
-    </button>
-  </form>
+      <button type="button" onclick="window.location.href='dash.html'">
+        Back to Dashboard
+      </button>
+    </form>
+  </div>
 </body>
 </html>

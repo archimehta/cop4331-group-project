@@ -4,31 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Edit Contact</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- top right -->
-  <p><a href="auth.html">Log out</a></p>
+  <div class="navbar">
+    <ul>
+      <li><img id="navbar-img" src="./Assets/nick.webp" alt="nick"></li>
+      <li>LoverLAMP</li>
+      <li><a id="logout-link" href="auth.html">Log out</a></li>
+    </ul>
+  </div>
+  <div class="edit">
 
-  <h1>Edit Contact</h1>
+    <h1>Edit Contact</h1>
 
-  <form>
-    <label for="email">Email:</label><br>
-    <input id="email" type="email"><br><br>
+    <form id="edit-form">
+      <label for="email">Email:</label>
+      <input id="email" type="email"><br>
 
-    <label for="phone">Phone Number:</label><br>
-    <input id="phone" type="text"><br><br>
+      <label for="phone">Phone Number:</label>
+      <input id="phone" type="text"><br>
 
-    <label for="first_name">First Name:</label><br>
-    <input id="first_name" type="text"><br><br>
+      <label for="first_name">First Name:</label>
+      <input id="first_name" type="text"><br>
 
-    <label for="last_name">Last Name:</label><br>
-    <input id="last_name" type="text"><br><br>
-
-    <button type="submit">Save Changes</button>
-    <button type="button" onclick="window.location.href='dash.html'">
-      Cancel
-    </button>
-    <button type="button">Delete Contact</button>
-  </form>
+      <label for="last_name">Last Name:</label>
+      <input id="last_name" type="text"><br><br>
+      <div id="btns">
+      <button type="submit">Save Changes</button>
+      <button class="cancel-btn" type="button" onclick="window.location.href='dash.html'">
+        Cancel
+      </button>
+      <button class="delete-btn" type="button">Delete Contact</button>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* TEST DATA 
+//TEST DATA 
 const realFetch = window.fetch;
 window.fetch = async (url, opts) => {
   if (typeof url === "string" && url.includes("SearchContacts.php")) {
@@ -37,7 +37,7 @@ window.fetch = async (url, opts) => {
   }
 
   return realFetch(url, opts);
-}; */
+}; 
 
 /* ===================== DASH LOGIC ===================== */
 
@@ -64,7 +64,7 @@ document.getElementById("logout-link").addEventListener("click", (e) => {
 
 // edit contact list
 document.getElementById("edit-contact-list").addEventListener("click", () => {
-  window.location.href = "edit.html";
+  window.location.href = "editAll.html";
 });
 
 // local avatar

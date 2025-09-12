@@ -4,63 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Manager – Contact Management</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- top right -->
-  <div>
-    <a href="#" id="logout-link">Log out</a>
+  <div class="navbar">
+    <ul>
+      <li><img id="navbar-img" src="./Assets/nick.webp" alt="nick"></li>
+      <li>LoverLAMP</li>
+      <li><a id="logout-link" href="auth.html">Log out</a></li>
+    </ul>
+  </div>
+  <h1 style="text-align: center;">Edit Contacts</h1>
+  <div class="edit">
+
+    
+
+
+      <!-- Add Contact -->
+      <section class="add-contact">
+        <h2 style="margin:0;">Add Contact</h2>
+
+        <form id="add-form" novalidate>
+          <div>
+            <label for="add-email">Email:</label>
+            <input id="add-email" name="email" type="email" placeholder="email@domain.com">
+          </div>
+          <br/>
+
+          <div>
+            <label for="add-phone">Phone Number:</label>
+            <input id="add-phone" name="phone" type="text" placeholder="(000)-000-0000">
+          </div>
+          <br/>
+
+          <div>
+            <label for="add-first">First Name:</label>
+            <input id="add-first" name="firstName" type="text">
+          </div>
+          <br/>
+
+          <div>
+            <label for="add-last">Last Name:</label>
+            <input id="add-last" name="lastName" type="text">
+          </div>
+          <br/>
+
+          <button type="submit" id="add-btn">Add</button>
+        </form>
+
+        <p id="add-status"></p>
+      </section>
+
+      <!-- Search + list -->
+      <section class="search-list">
+        
+        <input id="search-status" type="text" placeholder="Search for...">
+        
+        <div id="status"></div>
+
+        <div id="results"></div>
+        <!-- infinite scroll -->
+        <div id="sentinel"></div>
+      </section>
   </div>
 
-  <h1>Edit Contacts</h1>
-
-  <div style="display:flex; gap:24px; align-items:flex-start;">
-    <!-- Add Contact -->
-    <section>
-      <h2 style="margin:0;">Add Contact</h2>
-
-      <form id="add-form" novalidate>
-        <div>
-          <label for="add-email">Email:</label><br/>
-          <input id="add-email" name="email" type="email" placeholder="email@domain.com">
-        </div>
-        <br/>
-
-        <div>
-          <label for="add-phone">Phone Number:</label><br/>
-          <input id="add-phone" name="phone" type="text" placeholder="(000)-000-0000">
-        </div>
-        <br/>
-
-        <div>
-          <label for="add-first">First Name:</label><br/>
-          <input id="add-first" name="firstName" type="text">
-        </div>
-        <br/>
-
-        <div>
-          <label for="add-last">Last Name:</label><br/>
-          <input id="add-last" name="lastName" type="text">
-        </div>
-        <br/>
-
-        <button type="submit" id="add-btn">Add</button>
-      </form>
-
-      <p id="add-status"></p>
-    </section>
-
-    <!-- Search + list -->
-    <section style="flex:1;">
-      <div>
-        <input id="search" type="text" placeholder="Search for...">
-      </div>
-      <div id="search-status" style="margin-top:6px;"></div>
-
-      <div id="results" style="margin-top:12px;" aria-live="polite"></div>
-      <!-- infinite scroll -->
-      <div id="sentinel"></div>
-    </section>
-  </div>
 
   <script>
     // local storage

@@ -48,7 +48,7 @@ form.addEventListener("submit", async (event) => {
     }
 
     statusEl.textContent = "Account created successfully.";
-    window.location.href = "auth.html";
+    window.location.href = "index.html";
   } catch (err) {
     console.error(err);
     statusEl.textContent = "Unexpected error. Please try again.";

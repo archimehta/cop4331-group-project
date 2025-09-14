@@ -25,11 +25,11 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("HashedLogin.php", {
+    const res = await fetch("LAMPAPI/HashedLogin.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ userName: username, password }),
     });
 
     const data = await res.json().catch(() => ({}));

@@ -7,7 +7,7 @@ window.fetch = async (url, opts) => {
       query = JSON.parse(opts?.body || "{}")?.search || "";
     } catch {}
 
-    // return sample contacts (shape matches your PHP: FirstName, LastName, Phone, Email, databaseId)
+    // return sample contacts 
     const sample = {
       results: [
         { FirstName: "Mandy",   LastName: "Moore",   Phone: "555-1111", Email: "mandy@example.com",  databaseId: "101" },
@@ -48,7 +48,7 @@ const lastName  = localStorage.getItem("lastName")  || "";
 
 /*
 if (!userId) {
-  window.location.href = "auth.html";
+  window.location.href = "index.html";
 }
 */
 
@@ -59,7 +59,7 @@ document.getElementById("user-name").textContent =
 document.getElementById("logout-link").addEventListener("click", (e) => {
   e.preventDefault();
   localStorage.clear();
-  window.location.href = "auth.html";
+  window.location.href = "index.html";
 });
 
 // edit contact list

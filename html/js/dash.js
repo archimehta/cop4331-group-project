@@ -1,43 +1,3 @@
-//TEST DATA 
-const realFetch = window.fetch;
-window.fetch = async (url, opts) => {
-  if (typeof url === "string" && url.includes("LAMPAPI/SearchContacts.php")) {
-    let query = "";
-    try {
-      query = JSON.parse(opts?.body || "{}")?.search || "";
-    } catch {}
-
-    // return sample contacts 
-    const sample = {
-      results: [
-        { FirstName: "Mandy",   LastName: "Moore",   Phone: "555-1111", Email: "mandy@example.com",  databaseId: "101" },
-        { FirstName: "Mason",   LastName: "Ramsey",  Phone: "555-2222", Email: "mason@example.com",  databaseId: "102" },
-        { FirstName: "Michael", LastName: "Jordan",  Phone: "555-3333", Email: "mj@example.com",     databaseId: "103" },
-        { FirstName: "Miles",   LastName: "Morales", Phone: "555-4444", Email: "miles@example.com",  databaseId: "104" },
-        { FirstName: "Millie",  LastName: "Brown",   Phone: "555-5555", Email: "millie@example.com", databaseId: "105" },
-        { FirstName: "Milli",   LastName: "Brown",   Phone: "555-5655", Email: "millie@example.com", databaseId: "106" },
-        { FirstName: "Mllie",   LastName: "Brown",   Phone: "555-5555", Email: "millie@example.com", databaseId: "107" },
-        { FirstName: "Msson",   LastName: "Ramsey",  Phone: "555-2222", Email: "mason@example.com",  databaseId: "108" },
-        { FirstName: "Mason",   LastName: "Ramsey",  Phone: "555-2222", Email: "mason@example.com",  databaseId: "109" }
-      ],
-      error: ""
-    };
-
-    if (query) {
-      const q = query.toLowerCase();
-      sample.results = sample.results.filter(c =>
-        `${c.FirstName} ${c.LastName}`.toLowerCase().includes(q)
-      );
-    }
-
-    return new Response(JSON.stringify(sample), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
-  }
-
-  return realFetch(url, opts);
-}; 
 
 /* ===================== DASH LOGIC ===================== */
 
@@ -46,11 +6,11 @@ const userId    = Number(localStorage.getItem("userId")) || 0;
 const firstName = localStorage.getItem("firstName") || "";
 const lastName  = localStorage.getItem("lastName")  || "";
 
-/*
+
 if (!userId) {
   window.location.href = "index.html";
 }
-*/
+
 
 document.getElementById("user-name").textContent =
   [firstName, lastName].filter(Boolean).join(" ") || "User";

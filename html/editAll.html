@@ -12,7 +12,7 @@
     <ul>
       <li><img id="navbar-img" src="/Assets/nick.webp" alt="nick"></li>
       <li>LoverLAMP</li>
-      <li><a id="logout-link" href="auth.html">Log out</a></li>
+      <li><a id="logout-link" href="index.html">Log out</a></li>
     </ul>
   </div>
   <h1 style="text-align: center;">Edit Contacts</h1>
@@ -52,6 +52,7 @@
 
           <button type="submit" id="add-btn">Add</button>
         </form>
+        <button id="back-btn" onclick="window.location.href='dash.html'">← Back to Dashboard</button>
 
         <p id="add-status"></p>
       </section>
@@ -59,13 +60,11 @@
       <!-- Search + list -->
       <section class="search-list">
         
-        <input id="search-status" type="text" placeholder="Search for...">
+        <input id="search" type="text" placeholder="Search for...">
         
-        <div id="status"></div>
+        <div id="search-status"></div>
 
         <div id="results"></div>
-        <!-- infinite scroll -->
-        <div id="sentinel"></div>
       </section>
   </div>
 <script src="/js/editAll.js"></script>

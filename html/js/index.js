@@ -38,6 +38,10 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
       statusEl.textContent = data.error || "Login failed.";
       return;
     }
+    localStorage.setItem("userId", data.id);
+    localStorage.setItem("firstName", data.firstName);
+    localStorage.setItem("lastName", data.lastName);
+
 
     window.location.href = "dash.html";
   } catch (err) {

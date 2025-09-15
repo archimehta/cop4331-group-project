@@ -213,7 +213,7 @@ label{
     display: flex;
     flex-direction: row;
 }
-.edit button{
+.add-contact button {
     width: 100%;
     text-align: center;
 }
@@ -362,7 +362,7 @@ label{
     overflow-x: hidden;
     box-sizing: border-box;
 }
-
+/* editAll search styling*/
 /* Each contact card */
 .contact-card {
     width: 100%;   
@@ -396,6 +396,15 @@ label{
 }
 .contact-card button:hover {
     background: #3c3d40;
+}
+
+#search-status {
+  border: none;
+  background: transparent;
+  color: #fff;   /* keep text visible on your pink background */
+  margin-bottom: 16px;
+  font-size: 1.1em;
+  text-align: center;
 }
 /*colors*/
 :root{

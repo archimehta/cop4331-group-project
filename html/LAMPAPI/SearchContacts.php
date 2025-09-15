@@ -13,8 +13,8 @@
 	else
 	{
 		$stmt = $conn->prepare("select * from Contacts where (FirstName like ? or LastName like ?)and UserID=?");
-		$colorName =  $inData["search"][0] . substr($inData["search"], 1, 0) . "%";
-		$stmt->bind_param("sss", $colorName, $colorName, $inData["userId"]);
+		$colorName = $inData["search"] . "%";   // starts-with search
+		$stmt->bind_param("ssi", $colorName, $colorName, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();

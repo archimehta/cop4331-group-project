@@ -1,50 +1,9 @@
-const realFetch = window.fetch;
-window.fetch = async (url, opts) => {
-  if (typeof url === "string" && url.includes("LAMPAPI/SearchContacts.php")) {
-    let query = "";
-    try {
-      query = JSON.parse(opts?.body || "{}")?.search || "";
-    } catch {}
-
-    // return sample contacts 
-    const sample = {
-      results: [
-        { FirstName: "Mandy",   LastName: "Moore",   Phone: "555-1111", Email: "mandy@example.com",  databaseId: "101" },
-        { FirstName: "Mason",   LastName: "Ramsey",  Phone: "555-2222", Email: "mason@example.com",  databaseId: "102" },
-        { FirstName: "Michael", LastName: "Jordan",  Phone: "555-3333", Email: "mj@example.com",     databaseId: "103" },
-        { FirstName: "Miles",   LastName: "Morales", Phone: "555-4444", Email: "miles@example.com",  databaseId: "104" },
-        { FirstName: "Millie",  LastName: "Brown",   Phone: "555-5555", Email: "millie@example.com", databaseId: "105" },
-        { FirstName: "Milli",   LastName: "Brown",   Phone: "555-5655", Email: "millie@example.com", databaseId: "106" },
-        { FirstName: "Mllie",   LastName: "Brown",   Phone: "555-5555", Email: "millie@example.com", databaseId: "107" },
-        { FirstName: "Msson",   LastName: "Ramsey",  Phone: "555-2222", Email: "mason@example.com",  databaseId: "108" },
-        { FirstName: "Mason",   LastName: "Ramsey",  Phone: "555-2222", Email: "mason@example.com",  databaseId: "109" }
-      ],
-      error: ""
-    };
-
-    if (query) {
-      const q = query.toLowerCase();
-      sample.results = sample.results.filter(c =>
-        `${c.FirstName} ${c.LastName}`.toLowerCase().includes(q)
-      );
-    }
-
-    return new Response(JSON.stringify(sample), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
-  }
-
-  return realFetch(url, opts);
-};
-
 // local storage
 const USER_ID = Number(localStorage.getItem('userId')) || 0;
-/*
+
 if (!USER_ID) {
   window.location.href = 'index.html';
 }
-*/
 
 document.getElementById('logout-link').addEventListener('click', (e) => {
   e.preventDefault();
@@ -84,7 +43,7 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
   }
 
   try {
-    const res = await fetch('LAMPAPI/AddContact.php', {
+    const res = await fetch('/LAMPAPI/AddContact.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -97,15 +56,27 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
       })
     });
 
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || data.error) {
-      setAddStatus(data.error || 'Add failed.');
+    const raw = await res.text();
+    let data = {};
+    try { data = JSON.parse(raw); } catch (_) { /* ignore if not JSON */ }
+
+    // network / HTTP error?
+    if (!res.ok) {
+      setAddStatus((data && data.error) ? data.error : `HTTP ${res.status}: ${raw.slice(0,200)}`);
       return;
     }
 
+    // app-level error from PHP?
+    if (data && data.error && data.error.length) {
+      setAddStatus(data.error);
+      return;
+    }
+
+    // SUCCESS
     document.getElementById('add-form').reset();
-    setAddStatus('Contact added.');
-    triggerSearch();
+    setAddStatus((data && data.message) ? data.message : 'Contact added.');
+    if (typeof triggerSearch === 'function') triggerSearch();
+
   } catch (err) {
     console.error(err);
     setAddStatus('Unexpected error while adding contact.');
@@ -159,10 +130,10 @@ async function fetchResults(query) {
   allResults = [];
 
   try {
-    const res = await fetch("LAMPAPI/SearchContacts.php", {
+    const res = await fetch("/LAMPAPI/SearchContacts.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ search: query, userId : USER_ID })
+      body: JSON.stringify({ search: query, userId: USER_ID})
     });
 
     const data = await res.json().catch(() => ({}));

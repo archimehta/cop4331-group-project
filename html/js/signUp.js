@@ -21,7 +21,7 @@ form.addEventListener("submit", async (event) => {
   btn.disabled = true;
 
   try {
-    const res = await fetch("RegisterUser.php", {
+    const res = await fetch("LAMPAPI/RegisterUser.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

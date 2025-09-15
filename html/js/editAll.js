@@ -1,6 +1,6 @@
 const realFetch = window.fetch;
 window.fetch = async (url, opts) => {
-  if (typeof url === "string" && url.includes("SearchContacts.php")) {
+  if (typeof url === "string" && url.includes("LAMPAPI/SearchContacts.php")) {
     let query = "";
     try {
       query = JSON.parse(opts?.body || "{}")?.search || "";
@@ -84,7 +84,7 @@ document.getElementById('add-form').addEventListener('submit', async (e) => {
   }
 
   try {
-    const res = await fetch('AddContact.php', {
+    const res = await fetch('LAMPAPI/AddContact.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -159,7 +159,7 @@ async function fetchResults(query) {
   allResults = [];
 
   try {
-    const res = await fetch("SearchContacts.php", {
+    const res = await fetch("LAMPAPI/SearchContacts.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ search: query, userId : USER_ID })

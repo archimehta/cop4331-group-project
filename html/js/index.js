@@ -1,7 +1,7 @@
 // Redirect to sign-up page when sign-up box is submitted
 document.getElementById("signup-box").addEventListener("submit", (e) => {
   e.preventDefault();
-  window.location.href = "signup.html";
+  window.location.href = "signUp.html";
 });
 
 // Handle Sign In

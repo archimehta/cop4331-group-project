@@ -22,7 +22,7 @@
 		{
 			http_response_code(409);
 			sendResultInfoAsJson(json_encode(["error" => "Username already in use."]));
-			$check->close()
+			$check->close();
 			$conn->close();
 			exit;
 		}

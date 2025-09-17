@@ -5,7 +5,7 @@
 	$LastName = $inData["lastName"];
 	$Phone = $inData["phone"];
 	$Email = $inData["email"];
-	$ProfilePic = $inData["profilePic"];
+	//$ProfilePic = $inData["profilePic"];
 	$databaseId = $inData["databaseId"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -15,8 +15,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ?, ProfilePic = ? WHERE ID = ?");
-		$stmt->bind_param("sssssi",$inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $inData["profilePic"], $databaseId);
+		$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
+		$stmt->bind_param("ssssi",$inData["firstName"], $inData["lastName"], $inData["phone"], $inData["email"], $databaseId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
